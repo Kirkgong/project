@@ -1,17 +1,10 @@
 #include "interface.h"
+#include "udp_server.h"
 
 
 
 
-#ifdef BUILD_TEST
-//xl6600平台端交互函数
-void xl6600_data_write(unsigned char *buffer, unsigned int length)
-{
-	//桩函数
-}
-#endif
-
-void xl6600_data_read(unsigned char *buffer, unsigned int length)
+void xl6600_data_eda_write(unsigned char *buffer, unsigned int length)
 {
 	//xl6600收到平台端数据后直接转出
 	XL6600DataWriteToEDA(buffer, length);
@@ -19,17 +12,10 @@ void xl6600_data_read(unsigned char *buffer, unsigned int length)
 
 
 //辅助测试芯片平台端交互函数
-void audi_data_read(unsigned char *buffer, unsigned int length)
+void aufi_data_eda_write(unsigned char *buffer, unsigned int length)
 {
 	aufi_data_read_callback(buffer, length);
 }
-
-#ifdef BUILD_TEST
-void aufi_data_write(unsigned char *buffer, unsigned int length)
-{
-	//桩函数
-}
-#endif
 
 
 #ifdef BUILD_TEST

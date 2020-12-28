@@ -10,11 +10,8 @@
 
 void xl6600_data_write(unsigned char *buffer, unsigned int length);
 
-
-void audi_data_read(unsigned char *buffer, unsigned int length);
-void aufi_data_write(unsigned char *buffer, unsigned int length);
-
-
+void aufi_data_eda_write(unsigned char *buffer, unsigned int length); 
+void xl6600_data_eda_write(unsigned char *buffer, unsigned int length);
 int write_reg(unsigned int address, unsigned int data);
 int read_reg(unsigned int address, unsigned int *data);
 #endif

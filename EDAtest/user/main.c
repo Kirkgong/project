@@ -57,6 +57,8 @@
 #include "stdio.h"
 #include <unistd.h>
 #include "math.h"
+#include <pthread.h>
+#include "udp_server.h"
 
 uint32_t lec_shank = 0;
 
@@ -73,6 +75,7 @@ void SystemClock_Config(void);
 
 int main(void)
 {
+  int ret, id;
   uint32_t count = 0;
 
   SystemClock_Config();
@@ -84,13 +87,25 @@ int main(void)
   OE_Enable();
   I2C_OE_Disable();	
 
-  int a = sin(5);
-	
   QueueInit(&xl6600_rx_fifo, xl6600_rx_fifo_buf, sizeof(xl6600_rx_fifo_buf));
   
   XL6600PortToEDAInit();
 
   printf("start");
+
+  //creat thread1
+  ret = pthread_create(&id, NULL, (void*)xl6600_data_transmit, NULL);
+  if(ret != 0)
+  {
+    printf("Thread1 create fail!\n");
+  }
+
+  ret = pthread_create(&id, NULL, (void*)aufi_data_transmit, NULL); 
+  
+  if(ret != 0)
+  {
+    printf("Thread2 create fail!\n");
+  }
 	
   while (1)
   {

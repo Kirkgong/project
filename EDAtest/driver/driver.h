@@ -32,7 +32,6 @@ typedef unsigned char  			 		uint8_t;
 typedef signed  char 					int8_t;
 typedef char    						char_t;
 typedef bool    						bool_t;
-typedef unsigned long long int  		uint64_t;     
 
   
 
